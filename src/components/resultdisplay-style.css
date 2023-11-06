@@ -1,0 +1,11 @@
+.result-display {
+    width:169px;
+    height:80px;
+    border: 2px solid black;
+}
+
+.result-span {
+    float: right;
+    font-size: 30px;
+    padding-top: 30px;
+}
