@@ -1,19 +1,29 @@
 .button {
-    width: 40px;    
-    height: 40px;
-    background-color: white;
-    border: 2px solid black;
-    text-align: center;
-    font-size: 35px;
+  width: 72.5px;
+  height: 50px;
+  background-color: gray;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 35px;
+  margin: 2px;
+  padding-top: 10px;
+}
+
+.right-col-button {
+  background-color: orange;
+}
+
+.empty-button {
+  background-color: gainsboro;
 }
 
 .button:hover {
-    background-color: black;
-    color: white;
-    cursor:default;
+  background-color: black;
+  color: white;
+  cursor: default;
 }
 
 .row {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }

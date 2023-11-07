@@ -1,11 +1,15 @@
 .result-display {
-    width:169px;
-    height:80px;
-    border: 2px solid black;
+  width: 305px;
+  margin-bottom: 10px;
+  height: 80px;
+  background-color: black;
+  color: white;
+  border-radius: 20px;
 }
 
 .result-span {
-    float: right;
-    font-size: 30px;
-    padding-top: 30px;
+  float: right;
+  font-size: 30px;
+  padding-top: 30px;
+  padding-right: 10px;
 }

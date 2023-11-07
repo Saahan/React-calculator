@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function InputsDisplay() {
-  return (
-    <div>InputsDisplay</div>
-  )
+  return <div></div>;
 }

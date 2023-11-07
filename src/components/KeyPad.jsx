@@ -17,7 +17,7 @@ export default function KeyPad() {
 
   function handleNumClick(event) {
     //handle event for keypad press
-    if (operatorPressed === true) {
+    if (operatorPressed === true && dotFlag === false) {
       setDisplayArr(() => []);
       setOperatorPressed(false);
     }
@@ -30,6 +30,7 @@ export default function KeyPad() {
     if (displayArr.length === 0 || operatorPressed === true) {
       setDisplayArr(() => [0]);
       setDotFlag(true);
+      setOperatorPressed(false);
     }
 
     if (dotFlag === false) {
@@ -61,7 +62,7 @@ export default function KeyPad() {
         if (operator === "+" || operator === "-") {
           num1 = 0;
           setEqualsPressed(false);
-        } else if (operator === "x" || operator === "/") {
+        } else if (operator === "×" || operator === "÷") {
           num1 = 1;
           setEqualsPressed(false);
         }
@@ -69,19 +70,27 @@ export default function KeyPad() {
 
       if (operator === "+") {
         setNumber1((number1) => {
-          return number1 + num1;
+          if ((number1 / num1) % 1 !== 0)
+            return parseFloat((number1 + num1).toFixed(4));
+          else return number1 + num1;
         });
       } else if (operator === "-") {
         setNumber1((number1) => {
-          return number1 - num1;
+          if ((number1 / num1) % 1 !== 0)
+            return parseFloat((number1 - num1).toFixed(4));
+          else return number1 - num1;
         });
-      } else if (operator === "x") {
+      } else if (operator === "×") {
         setNumber1((number1) => {
-          return number1 * num1;
+          if ((number1 / num1) % 1 !== 0)
+            return parseFloat((number1 * num1).toFixed(4));
+          else return number1 * num1;
         });
-      } else if (operator === "/" && number1 !== 0) {
+      } else if (operator === "÷" && number1 !== 0) {
         setNumber1((number1) => {
-          return number1 / num1;
+          if ((number1 / num1) % 1 !== 0)
+            return parseFloat((number1 / num1).toFixed(4));
+          else return number1 / num1;
         });
       }
       setDisplayArr(() => []);
@@ -96,19 +105,27 @@ export default function KeyPad() {
 
       if (operator === "+") {
         setNumber1(() => {
-          return number1 + num2;
+          if ((number1 / num2) % 1 !== 0)
+            return parseFloat((number1 + num2).toFixed(4));
+          else return number1 + num2;
         });
       } else if (operator === "-") {
         setNumber1(() => {
-          return number1 - num2;
+          if ((number1 / num2) % 1 !== 0)
+            return parseFloat((number1 - num2).toFixed(4));
+          else return number1 - num2;
         });
-      } else if (operator === "x") {
+      } else if (operator === "×") {
         setNumber1(() => {
-          return number1 * num2;
+          if ((number1 / num2) % 1 !== 0)
+            return parseFloat((number1 * num2).toFixed(4));
+          else return number1 * num2;
         });
-      } else if (operator === "/") {
+      } else if (operator === "÷") {
         setNumber1(() => {
-          return number1 / num2;
+          if ((number1 / num2) % 1 !== 0)
+            return parseFloat((number1 / num2).toFixed(4));
+          else return number1 / num2;
         });
       }
     }
@@ -128,11 +145,11 @@ export default function KeyPad() {
     <div>
       <Calculator display={displayArr} />
       <div className="row">
-        <div className="button"></div>
-        <div className="button"></div>
-        <div className="button"></div>
-        <div className="button" onClick={clear}>
-          c
+        <div className="button empty-button"></div>
+        <div className="button empty-button"></div>
+        <div className="button empty-button"></div>
+        <div className="button right-col-button" onClick={clear}>
+          AC
         </div>
       </div>
       <div className="row">
@@ -145,8 +162,8 @@ export default function KeyPad() {
         <div className="button" onClick={handleNumClick}>
           9
         </div>
-        <div className="button" onClick={handleOperation}>
-          /
+        <div className="button right-col-button" onClick={handleOperation}>
+          ÷
         </div>
       </div>
       <div className="row">
@@ -159,8 +176,8 @@ export default function KeyPad() {
         <div className="button" onClick={handleNumClick}>
           6
         </div>
-        <div className="button" onClick={handleOperation}>
-          x
+        <div className="button right-col-button" onClick={handleOperation}>
+          ×
         </div>
       </div>
       <div className="row">
@@ -173,7 +190,7 @@ export default function KeyPad() {
         <div className="button" onClick={handleNumClick}>
           3
         </div>
-        <div className="button" onClick={handleOperation}>
+        <div className="button right-col-button" onClick={handleOperation}>
           -
         </div>
       </div>
@@ -184,10 +201,16 @@ export default function KeyPad() {
         <div className="button" onClick={handleDot}>
           .
         </div>
-        <div className="button" onClick={handleCalculate}>
+        <div
+          className="button"
+          onClick={handleCalculate}
+          onKeyDown={(e) => {
+            console.log(e);
+          }}
+        >
           =
         </div>
-        <div className="button" onClick={handleOperation}>
+        <div className="button right-col-button" onClick={handleOperation}>
           +
         </div>
       </div>
