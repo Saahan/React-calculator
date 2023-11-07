@@ -5,7 +5,8 @@ import "./keypad-style.css";
 export default function KeyPad() {
   const [displayArr, setDisplayArr] = useState([]); //array of number to be operated upon
   const [dotFlag, setDotFlag] = useState(false); //flag to check if there is only one point in the number
-  const [number1, setNumber1] = useState("");
+  const [number1, setNumber1] = useState(0);
+  const [operatorPressed, setOperatorPressed] = useState(false);
   const [operator, setOperator] = useState("+");
   const [equalsPressed, setEqualsPressed] = useState(false);
 
@@ -16,12 +17,21 @@ export default function KeyPad() {
 
   function handleNumClick(event) {
     //handle event for keypad press
+    if (operatorPressed === true) {
+      setDisplayArr(() => []);
+      setOperatorPressed(false);
+    }
     setEqualsPressed(() => false);
     setDisplayArr((prevState) => [...prevState, event.target.outerText]);
   }
 
   function handleDot(event) {
     //allow only one point in the array of number
+    if (displayArr.length === 0 || operatorPressed === true) {
+      setDisplayArr(() => [0]);
+      setDotFlag(true);
+    }
+
     if (dotFlag === false) {
       setDotFlag(true);
       setDisplayArr((prevState) => [...prevState, event.target.outerText]);
@@ -33,15 +43,17 @@ export default function KeyPad() {
   function clear() {
     //function to clear display and dotFlag
     setDotFlag(false);
+    setOperatorPressed(false);
     setEqualsPressed(false);
     setDisplayArr(() => []);
     setNumber1(0);
+    setOperator("+");
   }
 
   function handleOperation(event) {
     setDotFlag(false);
     setOperator(event.target.outerText);
-    if (displayArr.length !== 0) {
+    if (displayArr.length !== 0 && operatorPressed === false) {
       let num1 = displayArr.join("");
       num1 = parseFloat(num1);
 
@@ -73,6 +85,7 @@ export default function KeyPad() {
         });
       }
       setDisplayArr(() => []);
+      setOperatorPressed(true);
     }
   }
 
@@ -100,13 +113,16 @@ export default function KeyPad() {
       }
     }
     setEqualsPressed(() => true);
-    setDisplayArr(() => []);
+    setDisplayArr(() => [number1]);
   }
 
   useEffect(() => {
-    //setDisplayArr(() => [number1]);
-    console.log(number1);
-  }, [number1]);
+    if (equalsPressed === true || operatorPressed === true) {
+      setDisplayArr(() => [number1]);
+    }
+
+    console.log(number1, equalsPressed);
+  }, [number1, equalsPressed, operatorPressed]);
 
   return (
     <div>
