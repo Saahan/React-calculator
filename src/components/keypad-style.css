@@ -1,26 +1,37 @@
 .button {
   width: 72.5px;
   height: 50px;
-  background-color: gray;
+  background-color: #999999;
   border-radius: 20px;
   text-align: center;
   font-size: 35px;
   margin: 2px;
   padding-top: 10px;
+  color:white;
+  transition: 0.3s;
+}
+
+.button:hover {
+  background-color: gainsboro;
+  color: black;
+  cursor: default;
 }
 
 .right-col-button {
   background-color: orange;
 }
 
+.right-col-button:hover {
+  background-color: gold;
+  color: black;
+}
+
 .empty-button {
   background-color: gainsboro;
 }
 
-.button:hover {
-  background-color: black;
-  color: white;
-  cursor: default;
+.empty-button:hover {
+  background-color: whitesmoke
 }
 
 .row {

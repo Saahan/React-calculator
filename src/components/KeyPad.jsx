@@ -130,7 +130,7 @@ export default function KeyPad() {
       }
     }
     setEqualsPressed(() => true);
-    setDisplayArr(() => [number1]);
+    //setDisplayArr(() => [number1]);
   }
 
   useEffect(() => {
@@ -138,7 +138,7 @@ export default function KeyPad() {
       setDisplayArr(() => [number1]);
     }
 
-    console.log(number1, equalsPressed);
+    //console.log(number1, equalsPressed);
   }, [number1, equalsPressed, operatorPressed]);
 
   return (

@@ -1,10 +1,12 @@
 .result-display {
   width: 305px;
   margin-bottom: 10px;
-  height: 80px;
-  background-color: black;
+  height: 90px;
+  background-color: #444444;
   color: white;
   border-radius: 20px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .result-span {
