@@ -12,8 +12,11 @@ export default function Calculator(props) {
 }
 
 //Thigs to do:
-// - Add keypress functionality
+// - Add keypress functionality (.done)
 // - Style Calculator (.done)
 // - Readjust floating point for large numbers (.done)
-// -Readjust display for large numbers (.done)
+// - Readjust display for large numbers (.done)
+// - Polish Code
+// - Write Code Description
+// - Fix Minor Bugs
 
